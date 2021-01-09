@@ -338,23 +338,59 @@ fn main() {
 
     let mirrored_arr = mirror_arr_1000_times(filled_arr);
 
-    let visited_trees = traverse(mirrored_arr);
+    let visited_trees = traverse(&mirrored_arr, 3); //257
     println!("Trees visited: {}", visited_trees);
+
+    let trees_found1 = traverse(&mirrored_arr, 1); //61
+    let trees_found5 = traverse(&mirrored_arr, 5); //64
+    let trees_found7 = traverse(&mirrored_arr, 7); //47
+    let trees_found1_vertical2 = traverse_vertically_skip_1(&mirrored_arr, 1, 2); //37
+
+    let path_product: i64 =
+        visited_trees * trees_found1 * trees_found5 * trees_found7 * trees_found1_vertical2;
+    println!("Product of all paths: {}", path_product);
 }
 
-fn traverse(arr: Vec<Vec<char>>) -> i32 {
+fn traverse_vertically_skip_1(
+    arr: &Vec<Vec<char>>,
+    mut skip_index: usize,
+    mut vertical_skip: usize,
+) -> i64 {
+    let mut tree_counter = 0;
+    let mut my_iter = arr.iter();
+    //Loop should start on second row to work properly, therefore .next() is called one time
+
+    let original_skip_index = skip_index;
+    let original_vertical_skip_index = vertical_skip;
+
+    //having to clone the iterator very often. :/ There is probably better solution.
+    while let Some(v) = my_iter.clone().skip(vertical_skip).next() {
+        if v.iter().skip(skip_index).next().unwrap().eq(&'#') {
+            tree_counter += 1;
+            skip_index += original_skip_index;
+        } else {
+            skip_index += original_skip_index;
+        }
+        vertical_skip += original_vertical_skip_index;
+    }
+
+    tree_counter
+}
+
+// this function traverses the matrix using an iterator with a horizontal skip index
+fn traverse(arr: &Vec<Vec<char>>, mut skip_index: usize) -> i64 {
     let mut tree_counter = 0;
     let mut my_iter = arr.iter();
     //Loop should start on second row to work properly, therefore .next() is called one time
     my_iter.next();
-    let mut skip_index = 3;
+    let original_skip_index = skip_index;
 
     while let Some(v) = my_iter.next() {
         if v.iter().skip(skip_index).next().unwrap().eq(&'#') {
             tree_counter += 1;
-            skip_index += 3;
+            skip_index += original_skip_index;
         } else {
-            skip_index += 3;
+            skip_index += original_skip_index;
         }
     }
 
