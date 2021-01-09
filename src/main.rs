@@ -331,7 +331,7 @@ fn main() {
 
     let edit_str = original_str.replace("\n", "").replace(" ", "");
     let height = calculate_height(width, edit_str.as_str());
-    dbg!(height);
+
     let c: char = 'x';
     let multi_arr = vec![vec![c; 31 as usize]; 323 as usize];
     let filled_arr = fill_arr(multi_arr, &edit_str);
@@ -345,9 +345,9 @@ fn main() {
 fn traverse(arr: Vec<Vec<char>>) -> i32 {
     let mut tree_counter = 0;
     let mut my_iter = arr.iter();
+    //Loop should start on second row to work properly, therefore .next() is called one time
     my_iter.next();
     let mut skip_index = 3;
-    //Loop should start on second row to work properly
 
     while let Some(v) = my_iter.next() {
         if v.iter().skip(skip_index).next().unwrap().eq(&'#') {
@@ -360,7 +360,7 @@ fn traverse(arr: Vec<Vec<char>>) -> i32 {
 
     tree_counter
 }
-
+//Mirrors the rows of the arr sideways into a bigger buffer arr
 fn mirror_arr_1000_times(filled_arr: Vec<Vec<char>>) -> Vec<Vec<char>> {
     let c: char = 'x';
 
@@ -384,12 +384,12 @@ fn mirror_arr_1000_times(filled_arr: Vec<Vec<char>>) -> Vec<Vec<char>> {
         }
         i += 1;
         outer_buffer_index = 0;
-        println!("i: {}", i);
     }
 
     buf
 }
 
+// fills the array with values out of a string. Hard-coded :/
 fn fill_arr(multi_arr: Vec<Vec<char>>, edit_str: &str) -> Vec<Vec<char>> {
     let mut i = 0;
     let mut j = 0;
@@ -407,7 +407,7 @@ fn fill_arr(multi_arr: Vec<Vec<char>>, edit_str: &str) -> Vec<Vec<char>> {
 
     filled_arr
 }
-
+// calculate the height. Hard coded :/
 fn calculate_height(w: i32, data: &str) -> i32 {
     let length = data.len();
     let rows = length / w as usize;
