@@ -1,5 +1,5 @@
 # AdventOfCode
 
 Functions: 
-- mirroring arrays sideways
+- mirroring arrays vertically into larger buffer array
 - iterating over multidimensional array
