@@ -1,5 +1,5 @@
 # AdventOfCode
 
-Functions: 
-- mirroring arrays vertically into larger buffer array
-- iterating over multidimensional array
+All the different solutions can be seen in the different branches that represent the different days.
+
+Some of them are probably not the fastest solution possible, however working.
