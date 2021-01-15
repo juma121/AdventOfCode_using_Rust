@@ -2046,7 +2046,8 @@ fn main() {
     skh
     sk";
 
-    /*let edit_str = original_str
+    // [CODE FOR FIRST STAR]
+    let edit_str = original_str
         .replace(" ", "")
         .replace("\n\n", ",")
         .replace("\n", "");
@@ -2054,7 +2055,6 @@ fn main() {
     let mut bufferstr = String::new();
     for c in edit_str.chars() {
         if c == ',' {
-            //dbg!(&bufferstr);
             v.push(bufferstr.clone());
             bufferstr.clear();
         } else {
@@ -2074,8 +2074,9 @@ fn main() {
         }
         sum += h.len();
         h.clear()
-    }*/
+    }
 
+    //[CODE FOR SECOND STAR]
     //new data-structure needed for second star
 
     let edit_str_2 = original_str
